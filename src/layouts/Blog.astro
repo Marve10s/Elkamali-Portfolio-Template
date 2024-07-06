@@ -1,0 +1,70 @@
+---
+import Main from './Main.astro';
+import { Image } from 'astro:assets';
+import type { MarkdownLayoutProps } from 'astro';
+
+type Props = MarkdownLayoutProps<{
+  title: string;
+  subtitle: string;
+  poster: string;
+}>;
+
+const { title, subtitle, poster } = Astro.props.frontmatter;
+
+// const recentPosts = [
+//   { href: '#', label: 'Post 1', date: '2024-07-01' },
+//   { href: '#', label: 'Post 2', date: '2024-06-25' },
+//   { href: '#', label: 'Post 3' }, // No date provided
+// ];
+---
+
+<Main title="Ibrahim Elkamali | Blog">
+  <header
+    class="relative w-full h-64 bg-gray-800 flex items-center justify-center mb-12"
+  >
+    <Image
+      src={poster}
+      alt="Poster image"
+      width={1024}
+      height={480}
+      class="absolute inset-0 w-full h-full object-cover opacity-50"
+    />
+    <div class="relative z-10 text-center">
+      <h1 class="text-4xl mb-8 font-bold text-white dark:text-grey-900">
+        {title}
+      </h1>
+      <h2 class="text-2xl text-gray-300 dark:text-grey-600">{subtitle}</h2>
+    </div>
+  </header>
+
+  <div class="container mx-auto px-4 lg:px-8">
+    <article>
+      <slot />
+    </article>
+  </div>
+
+  <!-- <aside
+    class="w-full bg-gray-900 dark:bg-grey-900 p-4 rounded-lg shadow-md mt-12"
+  >
+    <h3 class="text-2xl font-semibold mb-4 dark:text-grey-400">Recent Posts</h3>
+    <ul class="list-none p-0">
+      {
+        recentPosts.map(({ href, label, date }) => (
+          <li class="mb-2">
+            <a
+              href={href}
+              class="text-blue-500 hover:underline dark:text-blue-400"
+            >
+              {label}
+            </a>
+            {date && (
+              <span class="block text-sm text-gray-500 dark:text-grey-600 mt-1">
+                {new Date(date).toLocaleDateString()}
+              </span>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </aside> -->
+</Main>

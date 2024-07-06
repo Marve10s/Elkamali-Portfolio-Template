@@ -1,0 +1,114 @@
+---
+import Main from '../layouts/Main.astro';
+import Cards from '../components/Cards.astro';
+import { Image } from 'astro:assets';
+
+const blogs = await Astro.glob<{
+  title: string;
+  poster: string;
+  subtitle: string;
+}>('../pages/blogs/*.md');
+---
+
+<Main title="Ibrahim Elkamali">
+  <div class="flex items-center flex-wrap pb-8 md:space-x-8 animate">
+    <Image
+      class="object-cover rounded-full w-24 h-24 md:w-32 md:h-32"
+      src="/images/avatar.png"
+      alt="Avatar"
+      width={96}
+      height={96}
+      loading="eager"
+    />
+
+    <div class="flex-1 min-w-[300px] md:ml-4 max-[410px]:mt-4">
+      <h1
+        class="text-2xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 ml-4"
+      >
+        Ibrahim Elkamali
+      </h1>
+      <h2
+        class="text-xl sm:text-2xl text-gray-700 dark:text-gray-300 mt-2 ml-4"
+      >
+        Your Astro Front-End Developer
+      </h2>
+      <p
+        class="text-sm sm:text-base text-gray-600 dark:text-gray-400 mt-4 ml-4 text-wrap"
+      >
+        I'm here to help you build your fast and scalable web applications.
+      </p>
+    </div>
+  </div>
+
+  <div transition:name="cards">
+    <Cards
+      cards={[
+        {
+          title: 'Technology I possess',
+          gradientFrom: '#818cf8',
+          gradientTo: '#d8b4fe',
+          to: '/techStack',
+        },
+        {
+          title: 'Projects I Have Worked On',
+          gradientFrom: '#fde68a',
+          gradientTo: '#fca5a5',
+          to: '/projects',
+        },
+        {
+          title: 'Learn More About Me',
+          gradientFrom: '#6ee7b7',
+          gradientTo: '#9333ea',
+          to: '/aboutMe',
+        },
+      ]}
+    />
+  </div>
+  <div class="mt-12 animate">
+    <h3 class="text-3xl text-gray-900 dark:text-gray-100 mb-4">
+      Featured Blogs
+    </h3>
+    <p class="text-gray-600 dark:text-gray-400 mb-8">
+      Discover my top three highlighted blogs, each showcasing my Front-End
+      path!
+    </p>
+  </div>
+
+  <ol class="space-y-4 animate">
+    {
+      blogs.map(blog => (
+        <li class="border-b border-gray-200 dark:border-gray-700">
+          <a
+            class="block py-4 text-gray-900 dark:text-gray-100 transition-opacity duration-200 ease-in-out hover:opacity-70"
+            href={blog.url}
+          >
+            {blog.frontmatter.title}
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</Main>
+
+<script>
+  import gsap from 'gsap';
+
+  document.addEventListener('astro:page-load', () => {
+    gsap.from('.animate', {
+      opacity: 0,
+      y: 20,
+      duration: 1,
+      stagger: 0.2,
+      ease: 'power2.out',
+    });
+  });
+</script>
+
+<style>
+  .floating-span {
+    display: inline-block;
+  }
+  #copyLinkContainer.hidden {
+    display: none;
+  }
+</style>

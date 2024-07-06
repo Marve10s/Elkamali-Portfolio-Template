@@ -1,0 +1,168 @@
+---
+import Main from '../layouts/Main.astro';
+import Cards from '../components/Cards.astro';
+import TechCard from '../components/TechCard.astro';
+import { techCardsData } from '../data/data';
+---
+
+<Main title="Tech Stack">
+  <div transition:name="cards">
+    <Cards
+      cards={[
+        {
+          title: 'Technology I possess',
+          gradientFrom: '#818cf8',
+          gradientTo: '#d8b4fe',
+          to: '/techStack',
+        },
+        {
+          title: 'Projects I Have Worked On',
+          gradientFrom: '#fde68a',
+          gradientTo: '#fca5a5',
+          to: '/projects',
+        },
+        {
+          title: 'Learn More About Me',
+          gradientFrom: '#6ee7b7',
+          gradientTo: '#9333ea',
+          to: '/aboutMe',
+        },
+      ]}
+    />
+  </div>
+
+  <div id="blogPostIframeContainer" class="hidden">
+    <iframe id="blogPostIframe" src="https://giphy.com/embed/kjDQ00nkmCrCezmje0"
+    ></iframe>
+  </div>
+
+  <div id="resumeIframeContainer" class="hidden">
+    <iframe id="resumeIframe" src="https://giphy.com/embed/BkIWP8ZiXzo3cR6oS0"
+    ></iframe>
+  </div>
+
+  <p class="mt-5 animated-text">
+    Here are the technologies I specialize in! This is just a glimpse of my
+    expertise. For a detailed overview, feel free to check out <a
+      href="#"
+      id="resumeLink"
+      class="underline font-bold text-rose-custom uppercase underline-offset-4"
+      >my resume</a
+    > (in progress) or explore my <a
+      class="underline font-bold text-purple-600 uppercase underline-offset-4"
+      href="/blogs/technologies-stack"
+      id="blogPostLink">blog post</a
+    >
+    about my Front-end development journey.
+    <br />
+    <br />
+    <span>
+      Once all the images are displayed, feel free to drag them around and have
+      some fun!
+    </span>
+  </p>
+
+  <div
+    class="grid-container justify-items-center relative grid grid-cols-4 grid-rows-3 p-4 border-2 border-gray-200 dark:border-gray-700 mt-8 rounded-3xl tech-cards"
+  >
+    {
+      techCardsData.map(techCard => (
+        <TechCard
+          class="tech-card draggable"
+          url={techCard.url}
+          alt={techCard.alt}
+        />
+      ))
+    }
+  </div>
+</Main>
+
+<style>
+  .grid-container {
+    width: 100%;
+    height: 500px;
+  }
+
+  .animated-text {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .tech-card {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  #resumeIframeContainer,
+  #blogPostIframeContainer {
+    position: absolute;
+    pointer-events: none; /* Ignore mouse events */
+    z-index: 1000;
+  }
+
+  #resumeIframe,
+  #blogPostIframe {
+    width: 400px;
+    height: 300px;
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { Draggable } from 'gsap/Draggable';
+  gsap.registerPlugin(Draggable);
+
+  document.addEventListener('astro:page-load', () => {
+    gsap.to('.animated-text', {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: 'power2.out',
+    });
+
+    gsap.to('.tech-card', {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      stagger: 0.1,
+      ease: 'power2.out',
+      onComplete: () => {
+        Draggable.create('.draggable', {
+          type: 'x,y',
+          bounds: '.grid-container',
+          edgeResistance: 0.65,
+          inertia: true,
+        });
+      },
+    });
+    setupIframeHover('resumeLink', 'resumeIframeContainer');
+    setupIframeHover('blogPostLink', 'blogPostIframeContainer');
+
+    function setupIframeHover(linkId: string, containerId: string) {
+      const link = document.getElementById(linkId) as HTMLAnchorElement;
+      const container = document.getElementById(containerId) as HTMLDivElement;
+
+      link.addEventListener('mouseenter', (event: MouseEvent) => {
+        container.classList.remove('hidden');
+        positionIframe(event, container);
+      });
+
+      link.addEventListener('mousemove', (event: MouseEvent) => {
+        positionIframe(event, container);
+      });
+
+      link.addEventListener('mouseleave', () => {
+        container.classList.add('hidden');
+      });
+    }
+
+    function positionIframe(event: MouseEvent, container: HTMLDivElement) {
+      const offset = 10;
+      const x = event.clientX + offset;
+      const y = event.clientY + offset;
+
+      container.style.left = `${x}px`;
+      container.style.top = `${y}px`;
+    }
+  });
+</script>

@@ -1,0 +1,112 @@
+---
+import Main from '../layouts/Main.astro';
+import Cards from '../components/Cards.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+---
+
+<Main title="My Projects">
+  <div class="" transition:name="cards">
+    <Cards
+      cards={[
+        {
+          title: 'Technology I possess',
+          gradientFrom: '#818cf8',
+          gradientTo: '#d8b4fe',
+          to: '/techStack',
+        },
+        {
+          title: 'Projects I Have Worked On',
+          gradientFrom: '#fde68a',
+          gradientTo: '#fca5a5',
+          to: '/projects',
+        },
+        {
+          title: 'Learn More About Me',
+          gradientFrom: '#6ee7b7',
+          gradientTo: '#9333ea',
+          to: '/aboutMe',
+        },
+      ]}
+    />
+  </div>
+
+  <section class="text-center container mx-auto py-8 animate-on-load">
+    <p>
+      Discover my top three highlighted projects, each showcasing different
+      technologies.
+    </p>
+    <p class="text-nowrap max-sm:text-wrap">
+      <br />
+      This portfolio is built with
+      <span class="font-bold uppercase text-orange-500 floating-span"
+        >Astro</span
+      >
+      <span class="font-bold uppercase text-cyan-500 floating-span"
+        >Tailwind</span
+      >
+      <span class="font-bold uppercase text-blue-600 floating-span"
+        >Typescript</span
+      >
+      <span class="font-bold uppercase text-green-600 floating-span">GSAP</span>
+    </p>
+    <br />
+    <div class="flex flex-col animate-on-load mt-4">
+      <ProjectCard
+        title="Apple Iphone 15"
+        description="Clone of apple website using stunning 3D models and animations!"
+        technologies={['React', 'GSAP', 'ThreeJS', 'Tailwind', 'Vite']}
+        href="https://react-iphone15-clone.netlify.app/"
+        imgSrc="/images/iphone_15.png"
+        imgAlt="Project"
+      />
+      <ProjectCard
+        title="Shoes shop"
+        description="Simple Nike website with some cool interactions!"
+        technologies={['React', 'Tailwind', 'Vite']}
+        href="https://nike-main-tailwind-react.netlify.app"
+        imgSrc="/images/nike.png"
+        imgAlt="Project"
+      />
+      <ProjectCard
+        title="Forkify"
+        description="MVC OOP Website with millions of recipes!"
+        technologies={['Javascript', 'Sass']}
+        href="https://forkrecipes.netlify.app/"
+        imgSrc="/images/forkify.png"
+        imgAlt="Portfolio"
+      />
+    </div>
+  </section>
+</Main>
+
+<style>
+  .floating-span {
+    display: inline-block;
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+
+  document.addEventListener('astro:page-load', () => {
+    const spans = document.querySelectorAll('.floating-span');
+    spans.forEach(span => {
+      gsap.to(span, {
+        y: '-5',
+        duration: 1,
+        ease: 'power2.inOut',
+        repeat: -1,
+        yoyo: true,
+      });
+    });
+
+    const elements = document.querySelectorAll('.animate-on-load');
+    gsap.from(elements, {
+      opacity: 0,
+      y: 20,
+      duration: 1,
+      ease: 'power2.out',
+      stagger: 0.3,
+    });
+  });
+</script>

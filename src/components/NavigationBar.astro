@@ -1,0 +1,76 @@
+---
+// import ThemeToggler from '../components/ThemeToggler.astro';
+
+const links = [{ href: '/', label: 'Home' }];
+
+const { pathname } = Astro.url;
+const isActive = (href: string) =>
+  href === pathname || href === pathname.replace(/\/$/, '');
+---
+
+<nav class="flex py-4 px-4 justify-between items-center">
+  <ul class="flex flex-wrap p-0 m-0">
+    {
+      links.map(({ href, label }) => (
+        <li class="opacity-80 list-none text-[0.95rem]">
+          <a
+            href={href}
+            class={[
+              isActive(href) ? 'active-link' : '',
+              'px-4 py-2 rounded-lg no-underline text-grey-400 hover:text-grey-900',
+            ].join(' ')}
+          >
+            {label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <!-- <ThemeToggler /> -->
+</nav>
+
+<!-- NAV WITH LINKS -->
+
+<!-- 
+---
+import ThemeToggler from '../components/ThemeToggler.astro';
+
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/techStack', label: 'Tech Stack' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/aboutMe', label: 'About Me' },
+];
+
+const { pathname } = Astro.url;
+const isActive = (href: string) =>
+  href === pathname || href === pathname.replace(/\/$/, '');
+---
+
+<nav class="flex py-4 px-4 justify-between items-center">
+  <ul class="flex flex-wrap p-0 m-0">
+    {
+      links.map(({ href, label }) => (
+        <li class="opacity-80 list-none text-[0.95rem]">
+          <a
+            href={href}
+            class={[
+              isActive(href) ? 'active-link' : '',
+              'px-4 py-2 rounded-lg no-underline text-grey-400 hover:text-grey-900',
+            ].join(' ')}
+          >
+            {label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <ThemeToggler />
+</nav>
+
+<style>
+  .active-link {
+    background-color: var(--grey-900);
+    color: var(--background);
+  }
+</style> -->

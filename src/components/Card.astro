@@ -1,0 +1,33 @@
+---
+export type Props = {
+  to: string;
+  title: string;
+  gradientFrom: string;
+  gradientTo: string;
+};
+
+const { to, title, gradientFrom, gradientTo } = Astro.props;
+---
+
+<a
+  href={to}
+  class={`card relative p-1 rounded-md transition-transform duration-200 ease-in-out hover:scale-90`}
+  style={{
+    backgroundImage: `linear-gradient(to right, ${gradientFrom}, ${gradientTo})`,
+  }}
+>
+  <div
+    class="card-inner bg-white dark:bg-[#18181b] p-6 rounded-md flex flex-col"
+  >
+    <div
+      class="card-title text-gray-900 dark:text-gray-100 font-medium text-lg leading-7"
+    >
+      {title}
+    </div>
+    <div class="flex items-center justify-between mt-4">
+      <div class="card-footer pt-8 text-gray-900 dark:text-gray-100 text-xl">
+        &rarr;
+      </div>
+    </div>
+  </div>
+</a>

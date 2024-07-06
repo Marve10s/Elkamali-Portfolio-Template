@@ -1,0 +1,33 @@
+---
+interface Props {
+  technologies: string[];
+}
+
+const { technologies } = Astro.props as Props;
+
+const technologyStyles: Record<string, string> = {
+  React: 'text-blue-600',
+  Vite: 'text-yellow-400',
+  Astro: 'text-orange-500',
+  GSAP: 'text-green-600',
+  ThreeJS: 'text-stone-300',
+  Tailwind: 'text-cyan-500',
+  Javascript: 'text-yellow-400',
+  Sass: 'text-pink-400',
+};
+---
+
+<p
+  class="text-xs sm:text-sm lg:text-base mb-4 text-gray-700 dark:text-gray-300"
+>
+  Technologies I used here: <br />
+  {
+    technologies.map(tech => (
+      <span
+        class={`${technologyStyles[tech] || ''} mx-1 font-bold uppercase text-sm`}
+      >
+        {tech}
+      </span>
+    ))
+  }
+</p>

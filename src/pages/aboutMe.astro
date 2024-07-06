@@ -1,0 +1,59 @@
+---
+import Main from '../layouts/Main.astro';
+import Cards from '../components/Cards.astro';
+---
+
+<Main title="About Me">
+  <div transition:name="cards">
+    <Cards
+      cards={[
+        {
+          title: 'Technology I possess',
+          gradientFrom: '#818cf8',
+          gradientTo: '#d8b4fe',
+          to: '/techStack',
+        },
+        {
+          title: 'Projects I Have Worked On',
+          gradientFrom: '#fde68a',
+          gradientTo: '#fca5a5',
+          to: '/projects',
+        },
+        {
+          title: 'Learn More About Me',
+          gradientFrom: '#6ee7b7',
+          gradientTo: '#9333ea',
+          to: '/aboutMe',
+        },
+      ]}
+    />
+  </div>
+  <div class="relative mt-8 animate-text opacity-0 translate-y-5">
+    <p class="text-lg max-md:text-md mt-4">
+      I'm Ibrahim Elkamali, a <span class="text-rose-custom font-bold"
+        >Front-End Web Developer</span
+      >
+      from Odesa, Ukraine. I'm a 19-year-old student at Odesa Polytechnic National
+      University, currently pursuing a degree in computer science. Since 2021, I
+      have been on a journey of self-learning programming.<br />
+      I'm available for all kinds of work you might need. <span
+        class="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent font-bold"
+      >
+        Feel free to contact me!
+      </span>
+    </p>
+  </div>
+</Main>
+
+<script>
+  import { gsap } from 'gsap';
+
+  document.addEventListener('astro:page-load', () => {
+    gsap.to('.animate-text', {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: 'power2.out',
+    });
+  });
+</script>

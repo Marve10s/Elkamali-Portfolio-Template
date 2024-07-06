@@ -1,0 +1,32 @@
+---
+const { title, description, technologies, href, imgSrc, imgAlt } = Astro.props;
+import { Image } from 'astro:assets';
+import Button from '../components/BtnProject.astro';
+import Technologies from '../components/Technologies.astro';
+---
+
+<div class="flex flex-col sm:flex-row items-center mb-12">
+  <div class="flex-shrink-0 mb-4 sm:mb-0 sm:mr-4">
+    <Image
+      src={imgSrc}
+      alt={imgAlt}
+      class="w-[300px] h-[250px] object-cover grayscale hover:filter-none"
+      width={300}
+      height={250}
+    />
+  </div>
+  <div class="flex-1">
+    <h3
+      class="text-base lg:text-xl xl:text-2xl mb-4 text-gray-800 dark:text-gray-300"
+    >
+      {title}
+    </h3>
+    <p
+      class="text-xs sm:text-sm lg:text-base mb-4 text-gray-700 dark:text-gray-400"
+    >
+      {description}
+    </p>
+    <Technologies technologies={technologies} />
+    <Button text="Website" href={href} />
+  </div>
+</div>

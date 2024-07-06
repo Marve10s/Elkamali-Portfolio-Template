@@ -1,0 +1,71 @@
+---
+import '../styles/styles.css';
+import Footer from '../components/Footer.astro';
+import NavigationBar from '../components/NavigationBar.astro';
+import { ViewTransitions } from 'astro:transitions';
+
+type Props = {
+  title: string;
+};
+
+const { title } = Astro.props;
+---
+
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta
+      name="description"
+      content="Ibrahim Elkamali's Portfolio Website - showcasing skills, projects, and experience in front-end web development."
+    />
+    <title>{title}</title>
+    <ViewTransitions />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.ibrahimelkamali.com/" />
+    <meta property="og:title" content="Ibrahim Elkamali's Portfolio" />
+    <meta
+      property="og:description"
+      content="Showcasing my skills, projects, and experience in front-end web development."
+    />
+    <meta
+      property="og:image"
+      content="https://www.ibrahimelkamali.com/images/portfolio-preview.jpg"
+    />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://www.ibrahimelkamali.com/" />
+    <meta property="twitter:title" content="Ibrahim Elkamali's Portfolio" />
+    <meta
+      property="twitter:description"
+      content="Showcasing my skills, projects, and experience in front-end web development."
+    />
+    <meta
+      property="twitter:image"
+      content="https://www.ibrahimelkamali.com/images/portfolio-preview.jpg"
+    />
+
+    <meta name="author" content="Ibrahim Elkamali" />
+    <meta
+      name="keywords"
+      content="Ibrahim Elkamali, Portfolio, Front-End Developer, Web Development, JavaScript, React, Astro, Svelte, TypeScript, Three.js, Tailwind CSS"
+    />
+  </head>
+
+  <body class="overflow-x-hidden">
+    <main>
+      <NavigationBar />
+      <slot />
+      <Footer />
+    </main>
+  </body>
+</html>
