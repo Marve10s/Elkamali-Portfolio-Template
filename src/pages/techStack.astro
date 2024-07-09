@@ -63,7 +63,7 @@ import { techCardsData } from '../data/data';
   </p>
 
   <div
-    class="grid-container justify-items-center relative grid grid-cols-4 grid-rows-3 p-4 border-2 border-gray-200 dark:border-gray-700 mt-8 rounded-3xl tech-cards"
+    class="grid-container w-full h-screen max-h-[320px] md:max-h-[500px] justify-items-center gap-2 items-center relative grid grid-cols-4 grid-rows-3 p-4 border-2 border-gray-200 dark:border-gray-700 mt-8 rounded-3xl tech-cards"
   >
     {
       techCardsData.map(techCard => (
@@ -78,11 +78,6 @@ import { techCardsData } from '../data/data';
 </Main>
 
 <style>
-  .grid-container {
-    width: 100%;
-    height: 500px;
-  }
-
   .animated-text {
     opacity: 0;
     transform: translateY(20px);
