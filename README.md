@@ -19,13 +19,15 @@
 
 </div>
 
-### **Don't forget to give the project a star! ⭐**
-## Welcome to my portfolio website
-[Elkamali](https://elkamali.netlify.app), built with TailwindCSS and GSAP. This site embraces modern Web Design, focusing on simplicity and functionality.
+**Welcome to my portfolio website, [Elkamali](https://elkamali.netlify.app), built with TailwindCSS and GSAP. This site embraces Neobrutalist Web Design, focusing on simplicity and functionality.**
 
+**Don't forget to give the project a star! ⭐**
 
+<div align="center">
 
 ![Elkamali Portfolio](https://github.com/Marve10s/MyAstro-Portfolio/assets/126423069/0151119a-9b7e-41d2-855a-c737b3d5b340)
+
+</div>
 
 ## Usage
 
